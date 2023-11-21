@@ -59,7 +59,6 @@ app.layout = dmc.MantineProvider(
         "defaultRadius": "md",
         "fontFamily": "Work Sans, sans-serif",
         "headings": {{
-            "fontFamily": "Sansation, sans-serif",
             "sizes": {{
                 "h1": {{
                     "fontSize": "30px",
