@@ -29,15 +29,14 @@ from dash_prometheus import add_middleware
 
 import dash_mantine_components as dmc
 import diskcache
-import pygad
-import RNA
 from dash import (Dash, DiskcacheManager, html)
-from scipy.spatial import distance
+from pathlib import Path
 
 app = Dash(
     "{app_name}",
     background_callback_manager=DiskcacheManager(diskcache.Cache("./cache")),
     title="{app_name}",
+    assets_folder=Path(__file__).parent / "assets",
 )
 server = app.server
 add_middleware(app)
@@ -64,7 +63,7 @@ app.layout = dmc.MantineProvider(
                         [
                             dmc.Group(
                                 [
-                                    dmc.Image(src="assets/favicon.ico", height=50),
+                                    dmc.Image(src=app.get_asset_url("favicon.ico"), width=50),
                                     html.Div(
                                         [
                                             dmc.Text("{app_name}", size="xl"),
@@ -78,6 +77,7 @@ app.layout = dmc.MantineProvider(
                 ],
                 p="md",
                 mb="40px",
+                height=60,
             ),
             # CONTENT
             dmc.Container(
@@ -88,7 +88,7 @@ app.layout = dmc.MantineProvider(
                                 [
                                     html.Div(
                                         [
-                                            dmc.Image(src="assets/Logo-Hummingbird.png", height="40px", width="auto"),
+                                            dmc.Image(src=app.get_asset_url("Logo-Hummingbird.png"), height="40px", width="auto"),
                                         ]
                                     ),
                                     dmc.Group(
@@ -137,33 +137,29 @@ description = "The DASH dashboard for {app_name}"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{{ name = "{user_name}", email = "{user_email}" }}]
-
 dependencies = [
+    "pyyaml",
     "gunicorn",
-    "git+github.com/gitHBDX/dash-prometheus.git",
+    "diskcache",
+    "dash[diskcache]>=2.6.1",
+    "dash-html-components==2.0.0",
+    "dash-core-components==2.0.0",
+    "dash-table>=5.0.0",
     "dash-bio>=1.0.2",
-    "dash-core-components=2.0.0",
     "dash-daq",
     "dash-extensions",
-    "dash-html-components=2.0.0",
-    "dash-table>=5.0.0",
-    "dash>=2.6.1",
-    "yaml",
-    "diskcache",
+    "dash-mantine-components>=0.12.0",
+    "dash-prometheus@git+https://github.com/gitHBDX/dash-prometheus",
     {dependencies}
 ]
 
-[build-system]
-requires = ["setuptools>=43.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-{extras}
-"""
-
-git_pyproject_template = """
-
 [project.urls]
 "Homepage" = "https://github.com/gitHBDX/{project_name}"
+
+[tool.setuptools.package-data]
+{package_name} = ["assets/*"]
+
+{extras}
 """
 
 images = {
@@ -191,7 +187,7 @@ python -m {package_name}
 Run in production mode
 
 ```bash
-gunicorn {package_name}:server
+gunicorn {package_name}.__main__:server
 ```
 
 -----
@@ -218,18 +214,11 @@ cfg = {
 "dependencies": "",
 "extras": "",
 }
-cfg["project_name"] = f"dashboard-{cfg['app_name']}"
+cfg["project_name"] = f"dashboard-{cfg['app_name'].lower()}"
 cfg["package_name"] = cfg["project_name"].replace("-", "_")
 
-if question("Include logging?"):
-    pass
-
 if question("Include cache?"):
-    cfg["dependencies"] += "git+https://github.com/gitHBDX/anndata-cache.git,\n"
-
-if question("Set-UP git?"):
-    cfg["extras"] += git_pyproject_template.format(**cfg)
-
+    cfg["dependencies"] += "\"anndata-cache@git+https://github.com/gitHBDX/anndata-cache\",\n"
 
 Path("pyproject.toml").write_text(base_pyproject_template.format(**cfg))
 Path("README.md").write_text(readme_template.format(**cfg))
@@ -239,3 +228,15 @@ Path(f"src/{cfg['package_name']}/__main__.py").write_text(main_template.format(*
 Path(f"src/{cfg['package_name']}/assets").mkdir(parents=True)
 Path(f"src/{cfg['package_name']}/assets/favicon.ico").write_bytes(base64.b64decode(images["favicon"]))
 Path(f"src/{cfg['package_name']}/assets/Logo-Hummingbird.png").write_bytes(base64.b64decode(images["hbdx_logo"]))
+
+os.system("git init")
+os.system("git add .")
+os.system('git commit -m "Initial commit"')
+os.system("git branch -M main")
+os.system(f"git remote add origin git@github.com:gitHBDX/{cfg['project_name']}.git")
+print_yellow("Open")
+print_blue("https://github.com/new")
+print_yellow("and create a new repository named")
+print_green(f"gitHBDX/{cfg['project_name']}")
+print_yellow("Then run the following commands:")
+print_green("git push -u origin main")
