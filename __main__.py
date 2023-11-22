@@ -49,7 +49,7 @@ if question("Include cache?"):
     cfg["dependencies"] += "\"anndata-cache@git+https://github.com/gitHBDX/anndata-cache\",\n"
 
 
-with open("main.zip", "rb") as zip_ref:
+with zipfile.ZipFile("main.zip") as zip_ref:
     with zip_ref.open("skeleton/src/__main__.py") as f:
         main_py = f.read().decode("utf-8")
     with zip_ref.open("skeleton/pyproject.toml") as f:
