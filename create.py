@@ -4,7 +4,7 @@ import os
 import sys
 from pathlib import Path
 
-print("stdin.isatty():", "yes" if sys.stdin.isatty() else "no")
+
 
 clear_screen = lambda: print("\033c")
 print_red = lambda x: print("\033[31m{}\033[0m".format(x))
@@ -237,6 +237,7 @@ gunicorn {package_name}.__main__:server
 
 # START OF SCRIPT
 clear_screen()
+print("stdin.isatty():", "yes" if sys.stdin.isatty() else "no")
 print_yellow("dash-skeleton")
 print_green("Creating a new dash app skeleton in the current directory \n\n\n")
 
