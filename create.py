@@ -4,7 +4,7 @@ import os
 import sys
 from pathlib import Path
 
-print("stdin.isatty():", sys.stdin.isatty())
+print("stdin.isatty():", "yes" if sys.stdin.isatty() else "no")
 
 clear_screen = lambda: print("\033c")
 print_red = lambda x: print("\033[31m{}\033[0m".format(x))
