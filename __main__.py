@@ -1,6 +1,7 @@
 import datetime
 import os
 from pathlib import Path
+import zipfile
 
 
 clear_screen = lambda: print("\033c")
@@ -47,14 +48,28 @@ cfg["package_name"] = cfg["project_name"].replace("-", "_")
 if question("Include cache?"):
     cfg["dependencies"] += "\"anndata-cache@git+https://github.com/gitHBDX/anndata-cache\",\n"
 
-Path("pyproject.toml").write_text(Path("skeleton/pyproject.toml").read_text().format(**cfg))
-Path("README.md").write_text(Path("skeleton/README.md").read_text().format(**cfg))
+
+with open("main.zip", "rb") as zip_ref:
+    with zip_ref.open("skeleton/src/__main__.py") as f:
+        main_py = f.read().decode("utf-8")
+    with zip_ref.open("skeleton/pyproject.toml") as f:
+        pyproject_toml = f.read().decode("utf-8")
+    with zip_ref.open("skeleton/README.md") as f:
+        readme_md = f.read().decode("utf-8")
+    with zip_ref.open("skeleton/src/assets/Logo-Hummingbird.png") as f:
+        logo = f.read()
+    with zip_ref.open("skeleton/src/assets/favicon.ico") as f:
+        favicon = f.read()
+
+
+Path("pyproject.toml").write_text(pyproject_toml.format(**cfg))
+Path("README.md").write_text(readme_md.format(**cfg))
 Path(f"src/{cfg['package_name']}").mkdir(parents=True)
 Path(f"src/{cfg['package_name']}/__init__.py").touch()
-Path(f"src/{cfg['package_name']}/__main__.py").write_text(Path("skeleton/src/__main__.py").format(**cfg))
+Path(f"src/{cfg['package_name']}/__main__.py").write_text(main_py.format(**cfg))
 Path(f"src/{cfg['package_name']}/assets").mkdir(parents=True)
-Path(f"src/{cfg['package_name']}/assets/favicon.ico").write_bytes(Path("skeleton/src/assets/favicon.ico").read_bytes())
-Path(f"src/{cfg['package_name']}/assets/Logo-Hummingbird.png").write_bytes(Path("skeleton/src/assets/Logo-Hummingbird.png").read_bytes())
+Path(f"src/{cfg['package_name']}/assets/favicon.ico").write_bytes(favicon)
+Path(f"src/{cfg['package_name']}/assets/Logo-Hummingbird.png").write_bytes(logo)
 
 os.system("git init")
 os.system("git add .")
