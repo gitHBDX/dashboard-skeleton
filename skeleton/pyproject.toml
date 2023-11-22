@@ -1,0 +1,31 @@
+[project]
+name = "{project_name}"
+version = "{current_year}.{current_month}.0"
+description = "{description}"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{{ name = "{user_name}", email = "{user_email}" }}]
+dependencies = [
+    "pyyaml",
+    "gunicorn",
+    "diskcache",
+    "dash[diskcache]>=2.6.1",
+    "dash-html-components==2.0.0",
+    "dash-core-components==2.0.0",
+    "dash-table>=5.0.0",
+    "dash-bio>=1.0.2",
+    "dash-daq",
+    "dash-extensions",
+    "dash-iconify",
+    "dash-mantine-components>=0.12.0",
+    "dash-prometheus@git+https://github.com/gitHBDX/dash-prometheus",
+    {dependencies}
+]
+
+[project.urls]
+"Homepage" = "https://github.com/gitHBDX/{project_name}"
+
+[tool.setuptools.package-data]
+{package_name} = ["assets/*"]
+
+{extras}
