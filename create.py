@@ -1,7 +1,10 @@
 import base64
 import datetime
 import os
+import sys
 from pathlib import Path
+
+print("stdin.isatty():", sys.stdin.isatty())
 
 clear_screen = lambda: print("\033c")
 print_red = lambda x: print("\033[31m{}\033[0m".format(x))
