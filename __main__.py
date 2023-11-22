@@ -50,15 +50,15 @@ if question("Include cache?"):
 
 
 with zipfile.ZipFile("main.zip") as zip_ref:
-    with zip_ref.open("skeleton/src/__main__.py") as f:
+    with zip_ref.open("dash-skeleton-main/skeleton/src/__main__.py") as f:
         main_py = f.read().decode("utf-8")
-    with zip_ref.open("skeleton/pyproject.toml") as f:
+    with zip_ref.open("dash-skeleton-main/skeleton/pyproject.toml") as f:
         pyproject_toml = f.read().decode("utf-8")
-    with zip_ref.open("skeleton/README.md") as f:
+    with zip_ref.open("dash-skeleton-main/skeleton/README.md") as f:
         readme_md = f.read().decode("utf-8")
-    with zip_ref.open("skeleton/src/assets/Logo-Hummingbird.png") as f:
+    with zip_ref.open("dash-skeleton-main/skeleton/src/assets/Logo-Hummingbird.png") as f:
         logo = f.read()
-    with zip_ref.open("skeleton/src/assets/favicon.ico") as f:
+    with zip_ref.open("dash-skeleton-main/skeleton/src/assets/favicon.ico") as f:
         favicon = f.read()
 
 
