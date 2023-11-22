@@ -71,14 +71,25 @@ Path(f"src/{cfg['package_name']}/assets").mkdir(parents=True)
 Path(f"src/{cfg['package_name']}/assets/favicon.ico").write_bytes(favicon)
 Path(f"src/{cfg['package_name']}/assets/Logo-Hummingbird.png").write_bytes(logo)
 
-os.system("git init")
-os.system("git add .")
-os.system('git commit -m "Initial commit"')
-os.system("git branch -M main")
-os.system(f"git remote add origin git@github.com:gitHBDX/{cfg['project_name']}.git")
-print_yellow("Open")
-print_blue("https://github.com/new")
-print_yellow("and create a new repository named")
-print_green(f"gitHBDX/{cfg['project_name']}")
-print_yellow("Then run the following commands:")
-print_green("git push -u origin main")
+Path("main.zip").unlink()
+
+if question("Init git?"):
+    os.system("git init")
+    os.system("git add .")
+    os.system('git commit -m "Initial commit"')
+    os.system("git branch -M main")
+    os.system(f"git remote add origin git@github.com:gitHBDX/{cfg['project_name']}.git")
+    print_yellow("Open")
+    print_blue("https://github.com/new")
+    print_yellow("and create a new repository named")
+    print_green(f"gitHBDX/{cfg['project_name']}")
+    print_yellow("Then run the following commands:")
+    print_green("git push -u origin main")
+
+if question("Install locally?"):
+    os.system(f"pip install --force-reinstall -e .")
+
+print_green("Done!")
+
+os.system(f"python -m {cfg['package_name']}")
+
