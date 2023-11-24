@@ -140,7 +140,6 @@ app.layout = dmc.MantineProvider(
                         withBorder=True,
                         shadow="sm",
                         radius="md",
-                        style={"width": 350},
                     ),
                 ]),
 
