@@ -56,6 +56,8 @@ with zipfile.ZipFile("main.zip") as zip_ref:
         pyproject_toml = f.read().decode("utf-8")
     with zip_ref.open("dash-skeleton-main/skeleton/README.md") as f:
         readme_md = f.read().decode("utf-8")
+    with zip_ref.open("dash-skeleton-main/skeleton/Dockerfile") as f:
+        dockerfile = f.read().decode("utf-8")
     with zip_ref.open("dash-skeleton-main/skeleton/src/assets/Logo-Hummingbird.png") as f:
         logo = f.read()
     with zip_ref.open("dash-skeleton-main/skeleton/src/assets/favicon.ico") as f:
@@ -64,6 +66,7 @@ with zipfile.ZipFile("main.zip") as zip_ref:
 
 Path("pyproject.toml").write_text(pyproject_toml.format(**cfg))
 Path("README.md").write_text(readme_md.format(**cfg))
+Path("Dockerfile").write_text(dockerfile.format(**cfg))
 Path(f"src/{cfg['package_name']}").mkdir(parents=True)
 Path(f"src/{cfg['package_name']}/__init__.py").touch()
 Path(f"src/{cfg['package_name']}/__main__.py").write_text(main_py.format(**cfg))
