@@ -19,8 +19,11 @@ dependencies = [
     "dash-iconify",
     "dash-mantine-components>=0.12.0",
     "dash-prometheus@git+https://github.com/gitHBDX/dash-prometheus",
+    "black",
+    "ipython",
     {dependencies}
 ]
+
 
 [project.urls]
 "Homepage" = "https://github.com/gitHBDX/{project_name}"

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import dash_mantine_components as dmc
 import diskcache
-from dash import Dash, DiskcacheManager, html
+from dash import Dash, DiskcacheManager, html, ctx, no_update, Input, Output, State, callback
 
 
 app = Dash(
@@ -30,7 +30,7 @@ app.layout = dmc.MantineProvider(
             "green": ["#edfce9", "#e0f4d8", "#c1e6b3", "#a0d88b", "#84cd69", "#72c553", "#67c247", "#56aa38", "#4a972e", "#3b8322"],
         }},
         "primaryColor": "green",
-        "defaultRadius": "md",
+        "defaultRadius": "xs",
         "fontFamily": "Work Sans, sans-serif",
         "headings": {{
             "sizes": {{
@@ -72,16 +72,84 @@ app.layout = dmc.MantineProvider(
                     )
                 ],
                 p="md",
-                mb="40px",
                 height="auto",
                 bg="white",
                 withBorder=True,
             ),
-            dmc.Stack([
-
+            dmc.Group([
+                #########################################
                 # THIS IS WHERE YOU PUT YOUR MAIN CONTENT
+                #########################################
+
+
+                dmc.Stack([
+                    dmc.Paper([
+                        dmc.Title("Hello World", order=1),
+                        dmc.Text("This is a text", size="xs"),
+                    ]),
+                    dmc.Paper([
+                          dmc.Text("The most useful elements are dmc.Stack, dmc.Group and dmc.Paper", size="xs"),
+                          dmc.Text("dmc.Stack is a vertical stack of elements", size="xs"),
+                            dmc.Text("dmc.Group is a horizontal stack of elements", size="xs"),
+                            dmc.Text("dmc.Paper is a box with a shadow", size="xs"),
+                    ]),
+                ]),
+                dmc.Stack([
+                    dmc.Paper([
+                        dmc.TextInput("This is a text input", label="Easy inputs", description="This is a description"),
+                         dmc.RadioGroup(
+                            [dmc.Radio(l, value=k) for k, l in [["react", "React"], ["ng", "Angular"], ["svelte", "Svelte"], ["vue", "Vue"]]],
+                            id="radiogroup-simple",
+                            value="react",
+                            label="Select your favorite framework/library",
+                            size="sm",
+                            mt=10,
+                        ),
+                    ]),
+                    dmc.Card(
+                        children=[
+                            dmc.CardSection(
+                                dmc.Image(
+                                    src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80",
+                                    height=160,
+                                )
+                            ),
+                            dmc.Group(
+                                [
+                                    dmc.Text("Norway Fjord Adventures", weight=500),
+                                    dmc.Badge("On Sale", color="red", variant="light"),
+                                ],
+                                position="apart",
+                                mt="md",
+                                mb="xs",
+                            ),
+                            dmc.Text(
+                                "With Fjord Tours you can explore more of the magical fjord landscapes with tours and activities on and around the fjords of Norway",
+                                size="sm",
+                                color="dimmed",
+                            ),
+                            dmc.Button(
+                                "Book classic tour now",
+                                variant="light",
+                                color="blue",
+                                fullWidth=True,
+                                mt="md",
+                                radius="md",
+                            ),
+                        ],
+                        withBorder=True,
+                        shadow="sm",
+                        radius="md",
+                        style={"width": 350},
+                    ),
+                ]),
+
+
+                #########################################
+                # END OF EXAMPLE CONTENT
+                #########################################
         
-            ], style={{"flexGrow": 1}}, px="md"),
+            ], align="start", style={{"flexGrow": 1}}, px="md"),
             dmc.Footer(
                 [
                     dmc.Container(
