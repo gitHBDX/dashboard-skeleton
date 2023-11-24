@@ -20,7 +20,7 @@ FROM gcr.io/distroless/base-debian12
 COPY --from=conda /env /env
 COPY --from=conda /pkg/data /data
 
-ENV PATH="${PATH}:/env/bin/"
+ENV PATH="${{PATH}}:/env/bin/"
 
 EXPOSE 80
 ENTRYPOINT ["/env/bin/gunicorn", "{package_name}.__main__:server", "server.port=80"]
