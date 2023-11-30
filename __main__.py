@@ -10,12 +10,14 @@ print_green = lambda x: print("\033[32m{}\033[0m".format(x))
 print_yellow = lambda x: print("\033[33m{}\033[0m".format(x))
 print_blue = lambda x: print("\033[34m{}\033[0m".format(x))
 
-def question(x: str, c:str="blue") -> bool:
+
+def question(x: str, c: str = "blue") -> bool:
     ccode = 33 if c == "yellow" else 34
     while (resp := input(f"\033[{ccode}m{x} (y/n)\033[0m > ").strip().lower()) not in ["y", "n"]:
         print_red("Please enter y or n")
     print(resp)
     return resp == "y"
+
 
 def user_input(x: str) -> str:
     while True:
@@ -23,6 +25,7 @@ def user_input(x: str) -> str:
         inp = input("> ").strip()
         if question(f"Is {inp} correct?", "yellow"):
             return inp
+
 
 clear_screen()
 print_yellow("dash-skeleton")
@@ -33,47 +36,41 @@ if os.listdir(".") != ["main.zip"]:
     exit(1)
 
 cfg = {
-"app_name": user_input("Enter the name of the app (dashboard-<name> will be used as the package name)"),
-"user_name": user_input("Enter your name"),
-"user_email": user_input("Enter your email address"),
-"description": user_input("Enter a short description of the app (Shown in the header)"),
-"current_year": datetime.datetime.now().year,
-"current_month": datetime.datetime.now().month,
-"dependencies": "",
-"extras": "",
+    "app_name": user_input("Enter the name of the app (dashboard-<name> will be used as the package name)"),
+    "user_name": user_input("Enter your name"),
+    "user_email": user_input("Enter your email address"),
+    "description": user_input("Enter a short description of the app (Shown in the header)"),
+    "current_year": datetime.datetime.now().year,
+    "current_month": datetime.datetime.now().month,
+    "dependencies": "",
+    "extras": "",
 }
 cfg["project_name"] = f"dashboard-{cfg['app_name'].lower()}"
 cfg["package_name"] = cfg["project_name"].replace("-", "_")
 
 if question("Include cache?"):
-    cfg["dependencies"] += "\"anndata-cache@git+https://github.com/gitHBDX/anndata-cache\",\n"
+    cfg["dependencies"] += '"anndata-cache@git+https://github.com/gitHBDX/anndata-cache",\n'
 
-
-with zipfile.ZipFile("main.zip") as zip_ref:
-    with zip_ref.open("dash-skeleton-main/skeleton/src/__main__.py") as f:
-        main_py = f.read().decode("utf-8")
-    with zip_ref.open("dash-skeleton-main/skeleton/pyproject.toml") as f:
-        pyproject_toml = f.read().decode("utf-8")
-    with zip_ref.open("dash-skeleton-main/skeleton/README.md") as f:
-        readme_md = f.read().decode("utf-8")
-    with zip_ref.open("dash-skeleton-main/skeleton/Dockerfile") as f:
-        dockerfile = f.read().decode("utf-8")
-    with zip_ref.open("dash-skeleton-main/skeleton/src/assets/Logo-Hummingbird.png") as f:
-        logo = f.read()
-    with zip_ref.open("dash-skeleton-main/skeleton/src/assets/favicon.ico") as f:
-        favicon = f.read()
-
-
-Path("pyproject.toml").write_text(pyproject_toml.format(**cfg))
-Path("README.md").write_text(readme_md.format(**cfg))
-Path("Dockerfile").write_text(dockerfile.format(**cfg))
-Path(f"src/{cfg['package_name']}").mkdir(parents=True)
-Path(f"src/{cfg['package_name']}/__init__.py").touch()
-Path(f"src/{cfg['package_name']}/__main__.py").write_text(main_py.format(**cfg))
+Path(".github/workflows").mkdir(parents=True)
 Path(f"src/{cfg['package_name']}/assets").mkdir(parents=True)
-Path(f"src/{cfg['package_name']}/assets/favicon.ico").write_bytes(favicon)
-Path(f"src/{cfg['package_name']}/assets/Logo-Hummingbird.png").write_bytes(logo)
+with zipfile.ZipFile("main.zip") as zip_ref:
+    for fn in [
+        "install.yml",
+    ]:
+        with zip_ref.open(f"dash-skeleton-main/.github/workflows/{fn}") as f:
+            Path(f".github/workflows/{fn}").write_text(f.read().decode("utf-8"))
 
+    for fn in ["pyproject.toml", "README.md", "Dockerfile", ".gitignore"]:
+        with zip_ref.open(f"dash-skeleton-main/skeleton/{fn}") as f:
+            Path(fn).write_text(f.read().decode("utf-8").format(**cfg))
+
+    for fn in ["__init__.py", "__main__.py"]:
+        with zip_ref.open(f"dash-skeleton-main/skeleton/src/{fn}") as f:
+            Path(f"src/{cfg['package_name']}/{fn}").write_text(f.read().decode("utf-8").format(**cfg))
+
+    for fn in ["Logo-Hummingbird.png", "favicon.ico"]:
+        with zip_ref.open(f"dash-skeleton-main/skeleton/src/assets/{fn}") as f:
+            Path(f"src/{cfg['package_name']}/assets/{fn}").write_bytes(f.read())
 Path("main.zip").unlink()
 
 if question("Init git?"):
@@ -95,4 +92,3 @@ if question("Install locally?"):
 print_green("Done!")
 
 os.system(f"python -m {cfg['package_name']}")
-
