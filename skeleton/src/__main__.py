@@ -15,6 +15,7 @@ app = dash.Dash(
     background_callback_manager=dash.DiskcacheManager(diskcache.Cache("./cache")),
     title="{app_name}",
     assets_folder=Path(__file__).parent / "assets",
+    pages_folder=Path(__file__).parent / "pages",
     external_stylesheets=[
         "https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap",
     ],
