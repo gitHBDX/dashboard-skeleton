@@ -57,7 +57,7 @@ with zipfile.ZipFile("main.zip") as zip_ref:
     for fn in [
         "install.yml",
     ]:
-        with zip_ref.open(f"dash-skeleton-main/.github/workflows/{fn}") as f:
+        with zip_ref.open(f"dash-skeleton-main/skeleton/.github/workflows/{fn}") as f:
             Path(f".github/workflows/{fn}").write_text(f.read().decode("utf-8"))
 
     for fn in ["pyproject.toml", "README.md", "Dockerfile", ".gitignore"]:
