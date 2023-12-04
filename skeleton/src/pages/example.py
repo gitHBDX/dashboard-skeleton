@@ -109,4 +109,4 @@ layout =   html.Div([     dmc.Stack([
             ])
 
 
-dash.register_page("example", layout, title="Example - {app_name}")
+dash.register_page("example", title="Example - {app_name}")
