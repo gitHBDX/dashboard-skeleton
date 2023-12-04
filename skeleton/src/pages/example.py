@@ -3,7 +3,7 @@ from dash import html
 import dash_mantine_components as dmc
 
 
-layout = html.Group(
+layout = dmc.Group(
     [
         dmc.Stack(
             [
