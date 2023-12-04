@@ -1,5 +1,4 @@
 import dash
-from dash import html
 import dash_mantine_components as dmc
 
 
@@ -43,12 +42,12 @@ layout = dmc.Group(
                             size="sm",
                             mt=10,
                         ),
-                    ]
+                    ],
                 ),
                 dmc.Group(
                     [
                         dmc.Card(
-                            children=[
+                            [
                                 dmc.CardSection(
                                     dmc.Image(
                                         src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80",
@@ -81,9 +80,10 @@ layout = dmc.Group(
                             withBorder=True,
                             shadow="sm",
                             radius="md",
+                            style={"maxWidth": "20em"},
                         ),
                         dmc.Card(
-                            children=[
+                            [
                                 dmc.CardSection(
                                     dmc.Image(
                                         src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80",
@@ -116,10 +116,11 @@ layout = dmc.Group(
                             withBorder=True,
                             shadow="sm",
                             radius="md",
+                            style={"maxWidth": "20em"}
                         ),
                     ]
                 ),
-            ]
+            ], style={"maxWidth": "40em"}
         ),
     ]
 )
