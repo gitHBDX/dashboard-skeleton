@@ -80,7 +80,7 @@ layout = dmc.Group(
                             withBorder=True,
                             shadow="sm",
                             radius="md",
-                            style={"maxWidth": "20em"},
+                            style={{"maxWidth": "20em"}},
                         ),
                         dmc.Card(
                             [
@@ -116,11 +116,11 @@ layout = dmc.Group(
                             withBorder=True,
                             shadow="sm",
                             radius="md",
-                            style={"maxWidth": "20em"}
+                            style={{"maxWidth": "20em"}}
                         ),
                     ]
                 ),
-            ], style={"maxWidth": "40em"}
+            ], style={{"maxWidth": "40em"}}
         ),
     ]
 )
