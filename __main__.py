@@ -53,6 +53,7 @@ if question("Include cache?"):
 
 Path(".github/workflows").mkdir(parents=True)
 Path(f"src/{cfg['package_name']}/assets").mkdir(parents=True)
+Path(f"src/{cfg['package_name']}/pages").mkdir(parents=True)
 with zipfile.ZipFile("main.zip") as zip_ref:
     for fn in [
         "install.yml",
@@ -64,7 +65,7 @@ with zipfile.ZipFile("main.zip") as zip_ref:
         with zip_ref.open(f"dash-skeleton-main/skeleton/{fn}") as f:
             Path(fn).write_text(f.read().decode("utf-8").format(**cfg))
 
-    for fn in ["__init__.py", "__main__.py"]:
+    for fn in ["__init__.py", "__main__.py", "pages/example.py"]:
         with zip_ref.open(f"dash-skeleton-main/skeleton/src/{fn}") as f:
             Path(f"src/{cfg['package_name']}/{fn}").write_text(f.read().decode("utf-8").format(**cfg))
 
