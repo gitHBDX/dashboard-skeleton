@@ -40,6 +40,7 @@ cfg = {
     "user_name": user_input("Enter your name"),
     "user_email": user_input("Enter your email address"),
     "description": user_input("Enter a short description of the app (Shown in the header)"),
+    "port": int(user_input("Enter the port to run the app on, please check yourself that it is not in use http://192.168.0.93/admin")),
     "current_year": datetime.datetime.now().year,
     "current_month": datetime.datetime.now().month,
     "dependencies": "",

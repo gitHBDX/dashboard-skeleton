@@ -1,13 +1,15 @@
 from dash_prometheus import add_middleware
-
 #  dash_prometheus has to be imported before dash
 
+from argparse import ArgumentParser
 from pathlib import Path
 
+import dash
 import dash_mantine_components as dmc
 import diskcache
-import dash
 from dash import html
+
+
 
 
 app = dash.Dash(
@@ -131,8 +133,14 @@ app.layout = dmc.MantineProvider(
 )
 
 if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument("--debug", action="store_true")
+    parser.add_argument("--port", type=int, default={port})
+
+    args = parser.parse_args()
+
     app.run(
-        debug=True,
-        port=8888,
+        debug=args.debug,
+        port=args.port,
         host="0.0.0.0",
     )
