@@ -24,11 +24,13 @@ dependencies = [
     {dependencies}
 ]
 
-
 [project.urls]
 "Homepage" = "https://github.com/gitHBDX/{project_name}"
 
 [tool.setuptools.package-data]
 {package_name} = ["assets/*"]
+
+[project.scripts]
+"{package_name}" = "{package_name}.__main__:main"
 
 {extras}

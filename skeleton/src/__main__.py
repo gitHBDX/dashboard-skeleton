@@ -132,7 +132,7 @@ app.layout = dmc.MantineProvider(
     ),
 )
 
-if __name__ == "__main__":
+def main():
     parser = ArgumentParser()
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--port", type=int, default={port})
@@ -144,3 +144,6 @@ if __name__ == "__main__":
         port=args.port,
         host="0.0.0.0",
     )
+
+if __name__ == "__main__":
+    main()
