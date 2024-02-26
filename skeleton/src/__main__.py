@@ -1,4 +1,5 @@
 from dash_prometheus import add_middleware
+
 #  dash_prometheus has to be imported before dash
 
 from argparse import ArgumentParser
@@ -7,9 +8,17 @@ from pathlib import Path
 import dash
 import dash_mantine_components as dmc
 import diskcache
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
+import yaml
 from dash import html
 
 
+plotly_template = yaml.load((Path(__file__).parent / "assets" / "plotly_template.yaml").read_text(), Loader=yaml.FullLoader)
+pio.templates["hbdx"] = go.layout.Template(plotly_template)
+pio.templates.default = "plotly_white+hbdx"
+px.defaults.template = "plotly_white+hbdx"
 
 
 app = dash.Dash(

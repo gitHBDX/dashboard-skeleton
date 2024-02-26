@@ -12,7 +12,7 @@ pip install git+https://github.com/gitHBDX/{project_name}.git
 Run in dev mode
 
 ```bash
-python -m {package_name}
+{package_name} --debug
 ````
 
 Run in production mode

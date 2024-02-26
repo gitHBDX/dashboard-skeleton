@@ -1,0 +1,26 @@
+layout:
+  font_family: Work Sans
+  colorway: # NOTE this palette is based on the GeoDataViz Toolkit color map, but we modified the first two colors to match the hbdx CI
+    [
+      "#1fa5ff",
+      "#75c757",
+      "#FF1F5B",
+      "#AF58BA",
+      "#FFC61E",
+      "#F28522",
+      "#A0B1BA",
+      "#A6761D",
+      "#E9002D",
+      "#FFAA00",
+      "#00B000",
+    ]
+  margin:
+    l: 0a
+    r: 0
+    b: 20
+    t: 30
+    pad: 0
+  xaxis:
+    showgrid: False
+  yaxis:
+    showgrid: False
