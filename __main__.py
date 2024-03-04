@@ -66,7 +66,7 @@ with zipfile.ZipFile("main.zip") as zip_ref:
         with zip_ref.open(f"dash-skeleton-main/skeleton/{fn}") as f:
             Path(fn).write_text(f.read().decode("utf-8").format(**cfg))
 
-    for fn in ["__init__.py", "__main__.py", "pages/example.py"]:
+    for fn in ["__init__.py", "__main__.py", "pages/example.py", "assets/config.yaml", "assets/plotly_template.yaml"]:
         with zip_ref.open(f"dash-skeleton-main/skeleton/src/{fn}") as f:
             Path(f"src/{cfg['package_name']}/{fn}").write_text(f.read().decode("utf-8").format(**cfg))
 
