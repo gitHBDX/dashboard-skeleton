@@ -22,6 +22,7 @@ dependencies = [
     "gunicorn",
     "ipython",
     "pyyaml",
+    "natsort",
     {dependencies}
 ]
 
