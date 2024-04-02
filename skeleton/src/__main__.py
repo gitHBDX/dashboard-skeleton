@@ -7,6 +7,7 @@ from pathlib import Path
 
 import dash
 import dash_mantine_components as dmc
+import dash_html_components as dhc
 import diskcache
 import plotly.express as px
 import plotly.graph_objects as go
@@ -33,7 +34,10 @@ app = dash.Dash(
     use_pages=True,
 )
 server = app.server
+
 add_middleware(app)
+
+dhc.global_callbacks.make_url_params_callback()
 
 app.layout = dmc.MantineProvider(
     theme={{
