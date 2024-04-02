@@ -37,7 +37,7 @@ server = app.server
 
 add_middleware(app)
 
-dhc.global_callbacks.make_url_params_callback()
+dhc.make_url_params_callback()
 
 app.layout = dmc.MantineProvider(
     theme={{
