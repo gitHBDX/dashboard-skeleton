@@ -7,7 +7,7 @@ from pathlib import Path
 
 import dash
 import dash_mantine_components as dmc
-import dash_html_components as dhc
+import dash_hummingbird_components as dhc
 import diskcache
 import plotly.express as px
 import plotly.graph_objects as go
