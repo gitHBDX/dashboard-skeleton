@@ -24,7 +24,7 @@ mamba env remove -n {project_name}; mamba create -n {project_name} -y "python=3.
 Inside your code folder
 
 ```bash
-mamba env remove -n {project_name}; mamba create -n {project_name} -y "python=3.9" && mamba activate {project_name} && git clone git@github.com/gitHBDX/{project_name}.git && cd {project_name} && pip install -e .
+mamba env remove -n {project_name}; mamba create -n {project_name} -y "python=3.9" && mamba activate {project_name} && git clone git@github.com:gitHBDX/{project_name}.git && cd {project_name} && pip install -e .
 ```
 
 ## Run
