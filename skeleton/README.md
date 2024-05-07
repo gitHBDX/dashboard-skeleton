@@ -3,11 +3,28 @@ Dashboard {app_name}
 
 ## Installation
 
+### Local environment 
+
 ```bash
-pip install git+https://github.com/gitHBDX/{project_name}.git
+pip install git+ssh://git@github.com/gitHBDX/{project_name}.git
 ```
 
-## Usage
+### With mamba
+
+```bash
+mamba create -n {project_name} -y "python=3.9"
+mamba activate {project_name}
+pip install git+ssh://git@github.com/gitHBDX/{project_name}.git
+{package_name}-init
+```
+
+One-liner:
+
+```bash
+mamba create -n {project_name} -y "python=3.9" && mamba activate {project_name} && pip install git+ssh://git@github.com/gitHBDX/{project_name}.git && {package_name}-init
+```
+
+## Run
 
 Run in dev mode
 
@@ -18,7 +35,13 @@ Run in dev mode
 Run in production mode
 
 ```bash
-gunicorn {package_name}.__main__:server
+gunicorn {package_name}.__main__
+```
+
+Run as a service
+
+```bash
+systemctl --user enable --now {package_name}
 ```
 
 -----

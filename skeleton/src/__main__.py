@@ -4,6 +4,7 @@ from dash_prometheus import add_middleware
 
 from argparse import ArgumentParser
 from pathlib import Path
+import random
 
 import dash
 import dash_mantine_components as dmc
@@ -33,7 +34,7 @@ app = dash.Dash(
     ],
     use_pages=True,
 )
-server = app.server
+application = app.server
 
 add_middleware(app)
 
@@ -152,9 +153,14 @@ def main():
 
     args = parser.parse_args()
 
+    port = args.port
+    if args.debug and args.port == {port}:
+        port = random.randint(8000, 9000)
+        print(f"Running on random port {port}")
+    
     app.run(
         debug=args.debug,
-        port=args.port,
+        port=port,
         host="0.0.0.0",
     )
 

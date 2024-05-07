@@ -13,7 +13,7 @@ dependencies = [
     "dash-extensions",
     "dash-html-components==2.0.0",
     "dash-iconify",
-    "dash-mantine-components>=0.12.0",
+    "dash-mantine-components==0.13.0a3",
     "dash-hummingbird-components@git+https://github.com/gitHBDX/dash-hummingbird-components",
     "dash-prometheus@git+https://github.com/gitHBDX/dash-prometheus",
     "dash-table>=5.0.0",
@@ -34,5 +34,6 @@ dependencies = [
 
 [project.scripts]
 "{package_name}" = "{package_name}.__main__:main"
+"{package_name}-init" = "{package_name}.init:main"
 
 {extras}
