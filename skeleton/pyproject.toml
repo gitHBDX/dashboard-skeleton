@@ -34,6 +34,5 @@ dependencies = [
 
 [project.scripts]
 "{package_name}" = "{package_name}.__main__:main"
-"{package_name}-init" = "{package_name}.init:main"
 
 {extras}

@@ -148,18 +148,18 @@ app.layout = dmc.MantineProvider(
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument("--debug", action="store_true")
-    parser.add_argument("--port", type=int, default={port})
+    parser.add_argument("--prod", action="store_true")
+    parser.add_argument("--port", type=int)
 
     args = parser.parse_args()
 
     port = args.port
-    if args.debug and args.port == {port}:
+    if not port:
         port = random.randint(8000, 9000)
         print(f"Running on random port {port}")
     
     app.run(
-        debug=args.debug,
+        debug=not args.prod,
         port=port,
         host="0.0.0.0",
     )

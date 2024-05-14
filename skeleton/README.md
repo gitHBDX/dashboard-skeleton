@@ -10,13 +10,12 @@ mamba env remove -n {project_name}
 mamba create -n {project_name} -y "python=3.9"
 mamba activate {project_name}
 pip install git+ssh://git@github.com/gitHBDX/{project_name}.git
-{package_name}-init
 ```
 
 One-liner:
 
 ```bash
-mamba env remove -n {project_name}; mamba create -n {project_name} -y "python=3.9" && mamba activate {project_name} && pip install git+ssh://git@github.com/gitHBDX/{project_name}.git && {package_name}-init
+mamba env remove -n {project_name}; mamba create -n {project_name} -y "python=3.9" && mamba activate {project_name} && pip install git+ssh://git@github.com/gitHBDX/{project_name}.git
 ```
 
 ### For development
@@ -39,12 +38,6 @@ Run in production mode
 
 ```bash
 gunicorn {package_name}.__main__
-```
-
-Run as a service
-
-```bash
-systemctl --user enable --now {package_name}
 ```
 
 -----

@@ -40,7 +40,6 @@ cfg = {
     "user_name": user_input("Enter your name"),
     "user_email": user_input("Enter your email address"),
     "description": user_input("Enter a short description of the app (Shown in the header)"),
-    "port": int(user_input("Enter the port to run the app on, please check yourself that it is not in use http://192.168.0.93/admin")),
     "current_year": datetime.datetime.now().year,
     "current_month": datetime.datetime.now().month,
     "dependencies": "",
@@ -66,7 +65,7 @@ with zipfile.ZipFile("main.zip") as zip_ref:
         with zip_ref.open(f"dash-skeleton-main/skeleton/{fn}") as f:
             Path(fn).write_text(f.read().decode("utf-8").format(**cfg))
 
-    for fn in ["__init__.py", "__main__.py", "init.py", "pages/example.py", "assets/config.yaml", "assets/plotly_template.yaml"]:
+    for fn in ["__init__.py", "__main__.py", "pages/example.py", "assets/config.yaml", "assets/plotly_template.yaml"]:
         with zip_ref.open(f"dash-skeleton-main/skeleton/src/{fn}") as f:
             Path(f"src/{cfg['package_name']}/{fn}").write_text(f.read().decode("utf-8").format(**cfg))
 
