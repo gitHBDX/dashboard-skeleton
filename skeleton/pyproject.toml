@@ -23,6 +23,7 @@ dependencies = [
     "ipython",
     "pyyaml",
     "natsort",
+    "numpy<2.0.0",
     {dependencies}
 ]
 
