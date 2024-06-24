@@ -156,7 +156,7 @@ def main():
     port = args.port
     if not port:
         port = random.randint(8000, 9000)
-        print(f"Running on random port {port}")
+        print(f"Running on random port {{port}}")
     
     app.run(
         debug=not args.prod,
