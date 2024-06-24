@@ -58,19 +58,19 @@ with zipfile.ZipFile("main.zip") as zip_ref:
     for fn in [
         "install.yml",
     ]:
-        with zip_ref.open(f"dash-skeleton-main/skeleton/.github/workflows/{fn}") as f:
+        with zip_ref.open(f"dashboard-skeleton-main/skeleton/.github/workflows/{fn}") as f:
             Path(f".github/workflows/{fn}").write_text(f.read().decode("utf-8"))
 
     for fn in ["pyproject.toml", "README.md", "Dockerfile", ".gitignore"]:
-        with zip_ref.open(f"dash-skeleton-main/skeleton/{fn}") as f:
+        with zip_ref.open(f"dashboard-skeleton-main/skeleton/{fn}") as f:
             Path(fn).write_text(f.read().decode("utf-8").format(**cfg))
 
     for fn in ["__init__.py", "__main__.py", "pages/example.py", "assets/config.yaml", "assets/plotly_template.yaml"]:
-        with zip_ref.open(f"dash-skeleton-main/skeleton/src/{fn}") as f:
+        with zip_ref.open(f"dashboard-skeleton-main/skeleton/src/{fn}") as f:
             Path(f"src/{cfg['package_name']}/{fn}").write_text(f.read().decode("utf-8").format(**cfg))
 
     for fn in ["Logo-Hummingbird.png", "favicon.ico"]:
-        with zip_ref.open(f"dash-skeleton-main/skeleton/src/assets/{fn}") as f:
+        with zip_ref.open(f"dashboard-skeleton-main/skeleton/src/assets/{fn}") as f:
             Path(f"src/{cfg['package_name']}/assets/{fn}").write_bytes(f.read())
 Path("main.zip").unlink()
 
