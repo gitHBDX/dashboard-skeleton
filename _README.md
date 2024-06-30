@@ -31,7 +31,7 @@ mamba env remove -n {project_name}; mamba create -n {project_name} -y "python=3.
 Run in dev mode
 
 ```bash
-{package_name} --debug
+{package_name}
 ````
 
 Run in production mode
