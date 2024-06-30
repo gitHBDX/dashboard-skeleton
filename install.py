@@ -35,7 +35,7 @@ print_yellow("dash-skeleton")
 print_green("setting up a new dashboard…\n\n\n")
 
 cfg = {
-    "app_name": user_input("Enter the name of the app (without \"dashbaord-\" dashboard-<name> will be used as the package name)"),
+    "app_name": user_input("Enter the name of the app (without \"dashboard-\" dashboard-<name> will be used as the package name)"),
     "user_name": user_input("Enter your name"),
     "user_email": user_input("Enter your email address"),
     "description": user_input("Enter a short description of the app (Shown in the header)"),
