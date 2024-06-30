@@ -52,7 +52,7 @@ if question("Include cache?"):
     cfg["dependencies"] += '"anndata-cache@git+https://github.com/gitHBDX/anndata-cache",\n'
 
 
-for filename in map(Path, ["pyproject.toml", "_README.md", "Dockerfile", "src/dashboard-skeleton/__main__.py", "src/dashboard-skeleton/pages/example.py", "src/dashboard-skeleton/assets/config.yaml", "src/dashboard-skeleton/pages/idnex.py"]):
+for filename in map(Path, ["pyproject.toml", "_README.md", "Dockerfile", "src/dashboard-skeleton/__main__.py", "src/dashboard-skeleton/pages/index.py", "src/dashboard-skeleton/assets/config.yaml", "src/dashboard-skeleton/pages/idnex.py"]):
     filename.write_text(filename.read_text().format(**cfg))
 
 Path("src/dashboard-skeleton").rename(f"src/{cfg['package_name']}")
