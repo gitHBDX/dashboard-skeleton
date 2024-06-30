@@ -73,7 +73,12 @@ if question("Setup a new conda environment? (recommended)"):
 os.remove("install.py")
 subprocess.run("git add .", shell=True)
 subprocess.run('git commit -m "Initial commit"', shell=True)
+subprocess.run("git push", shell=True)
 
 print_green("Done!")
+
+print_yellow("To start the app run:")
+print_blue(f"conda activate {cfg['project_name']}")
+print_blue(cfg["package_name"])
 
 
