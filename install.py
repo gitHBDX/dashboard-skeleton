@@ -63,7 +63,7 @@ if question("Setup a new conda environment? (recommended)"):
         print_red("Conda is not installed. Can't create a new environment.")
     else:
         conda_exe = os.environ["CONDA_EXE"]
-        print(f"{conda_exe} create -n {cfg['project_name']} python=3.9")
+        print(f"{conda_exe} create -n {cfg['project_name']} python=3.9 -y")
         subprocess.run(f"{conda_exe} create -n {cfg['project_name']} python=3.9", shell=True)
         pip = Path(os.environ["CONDA_PREFIX"]).parent / cfg["project_name"] / "bin" / "pip"
         print(f"{pip} install -r requirements.txt")
