@@ -75,10 +75,16 @@ subprocess.run("git add .", shell=True)
 subprocess.run('git commit -m "Initial commit"', shell=True)
 subprocess.run("git push", shell=True)
 
-print_green("Done!")
+print_green(f"\n{'-'*50}Done!\n\n")
 
 print_yellow("To start the app run:")
-print_blue(f"conda activate {cfg['project_name']}")
-print_blue(cfg["package_name"])
+print_blue(f"\tconda activate {cfg['project_name']}")
+print_blue(f"\t{cfg['package_name']}\n\n")
+
+print_yellow("To add the new dashboard to the production server on ws3\nadd the package in the following file:")
+print_blue("\thttps://github.com/gitHBDX/dashboard-front/blob/main/src/dashboard_front/assets/config.yaml\n\n")
+print_yellow("Update the dashboard-front on the admin panel:")
+print_blue("\thttp://192.168.0.93/admin")
+print_yellow("Then Install your new dashboard on the same panel")
 
 
