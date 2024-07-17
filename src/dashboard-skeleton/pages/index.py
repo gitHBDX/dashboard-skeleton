@@ -51,27 +51,27 @@ layout = dmc.Group(
                                 dmc.CardSection(
                                     dmc.Image(
                                         src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80",
-                                        height=160,
+                                        h=160,
                                     )
                                 ),
                                 dmc.Group(
                                     [
-                                        dmc.Text("Norway Fjord Adventures", weight=500),
-                                        dmc.Badge("On Sale", color="red", variant="light"),
+                                        dmc.Text("Norway Fjord Adventures", w=500),
+                                        dmc.Badge("On Sale", c="red", variant="light"),
                                     ],
-                                    position="apart",
+                                    pos="apart",
                                     mt="md",
                                     mb="xs",
                                 ),
                                 dmc.Text(
                                     "With Fjord Tours you can explore more of the magical fjord landscapes with tours and activities on and around the fjords of Norway",
                                     size="sm",
-                                    color="dimmed",
+                                    c="dimmed",
                                 ),
                                 dmc.Button(
                                     "Book classic tour now",
                                     variant="light",
-                                    color="blue",
+                                    c="blue",
                                     fullWidth=True,
                                     mt="md",
                                     radius="md",
@@ -80,34 +80,34 @@ layout = dmc.Group(
                             withBorder=True,
                             shadow="sm",
                             radius="md",
-                            style={{"maxWidth": "20em"}},
+                            style={"maxWidth": "20em"},
                         ),
                         dmc.Card(
                             [
                                 dmc.CardSection(
                                     dmc.Image(
                                         src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80",
-                                        height=160,
+                                        h=160,
                                     )
                                 ),
                                 dmc.Group(
                                     [
-                                        dmc.Text("Norway Fjord Adventures", weight=500),
-                                        dmc.Badge("On Sale", color="red", variant="light"),
+                                        dmc.Text("Norway Fjord Adventures", w=500),
+                                        dmc.Badge("On Sale", c="red", variant="light"),
                                     ],
-                                    position="apart",
+                                    pos="apart",
                                     mt="md",
                                     mb="xs",
                                 ),
                                 dmc.Text(
                                     "With Fjord Tours you can explore more of the magical fjord landscapes with tours and activities on and around the fjords of Norway",
                                     size="sm",
-                                    color="dimmed",
+                                    c="dimmed",
                                 ),
                                 dmc.Button(
                                     "Book classic tour now",
                                     variant="light",
-                                    color="blue",
+                                    c="blue",
                                     fullWidth=True,
                                     mt="md",
                                     radius="md",
@@ -116,11 +116,11 @@ layout = dmc.Group(
                             withBorder=True,
                             shadow="sm",
                             radius="md",
-                            style={{"maxWidth": "20em"}}
+                            style={"maxWidth": "20em"}
                         ),
                     ]
                 ),
-            ], style={{"maxWidth": "40em"}}
+            ], style={"maxWidth": "40em"}
         ),
     ]
 )
