@@ -108,7 +108,7 @@ app.layout = dmc.MantineProvider(
             ),
             dmc.AppShellMain(children=[
                 dash.page_container
-            ], ), #style={"flexGrow": 1}, px="md", align="start",), 
+            ], style={"flexGrow": 1, "marginTop": "80px"}, px="md", align="start"), 
             dmc.AppShellFooter(
                 [
                     dmc.Container(
